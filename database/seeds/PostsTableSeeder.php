@@ -17,7 +17,12 @@ class PostsTableSeeder extends Seeder
 
             $newPost = new Posts();
 
-            $newPost->name = $faker->name();
+            $newPost->author = $faker->name();
+            $newPost->author_img = $faker->imageUrl(200,200);
+            $newPost->description = $faker->paragraph(2);
+            $newPost->post_img = $faker->imageUrl(640,380);
+            $newPost->title = $faker->words(3, true);
+            
             $newPost->save();
             
         }
