@@ -8,11 +8,12 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -27,9 +28,8 @@
                 </div>
             @endif
 
-            <div id="root"></div>
+        <div id="root"></div>
 
-            <script src="{{ asset('js/front.js') }}"></script>
-        </div>
+        <script src="{{ asset('js/front.js') }}"></script>
     </body>
 </html>

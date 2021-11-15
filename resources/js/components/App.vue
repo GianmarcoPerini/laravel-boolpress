@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <p>ciao</p>
+        <p>cpme syao</p>
     </div>
 </template>
 
@@ -13,3 +15,9 @@
         }
     }
 </script>
+
+<style lang='scss'>
+// @import '~bootstrap/scss/bootstrap';
+
+
+</style>
