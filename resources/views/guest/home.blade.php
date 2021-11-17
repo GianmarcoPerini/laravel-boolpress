@@ -12,7 +12,7 @@
 
         
     </head>
-    <body>
+    <body class="bg-primary">
 
             @if (Route::has('login'))
                 <div class="top-right links">

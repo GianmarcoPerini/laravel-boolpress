@@ -1948,6 +1948,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardList',
   data: function data() {
@@ -2479,17 +2496,49 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    _vm._l(_vm.BigData, function (data) {
-      return _c("div", { key: data.id }, [
-        _vm._v("\n        " + _vm._s(data.author) + "\n    "),
-      ])
-    }),
-    0
-  )
+  return _c("div", [
+    _c(
+      "table",
+      { staticClass: "table table-dark" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.BigData, function (data) {
+          return _c("tbody", { key: data.id }, [
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(data.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.author))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.title))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.description))]),
+            ]),
+          ])
+        }),
+      ],
+      2
+    ),
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Post Author")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Post Title")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

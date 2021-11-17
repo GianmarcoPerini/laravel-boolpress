@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Posts::all();
+        return view('admin.home', compact('posts'));
     }
 
     /**
@@ -79,8 +80,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Posts $posts)
     {
-        //
+        $posts->delete();
+
+        return redirect()->route('admin.home');
     }
 }
