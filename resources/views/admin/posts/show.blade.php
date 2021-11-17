@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-
-{{-- @dd($posts) --}}
-
+    <p>{{ $post->title }}</p>
 @endsection

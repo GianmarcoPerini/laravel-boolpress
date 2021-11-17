@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Posts::all();
-        return view('admin.home', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -35,9 +35,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Posts $post)
     {
-        //
+        $newPost = new Posts();
+        $newPost->fill($request->all());
+        $newPost->save();
+        return redirect()->route('admin.posts.show', $newPost);
     }
 
     /**
@@ -46,9 +49,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Posts $post)
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -57,9 +60,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Posts $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -69,9 +72,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Posts $post)
     {
-        //
+        $post->update($request->all());
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -80,10 +84,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Posts $posts)
+    public function destroy(Posts $post)
     {
-        $posts->delete();
+        $post->delete();
 
-        return redirect()->route('admin.home');
+        return redirect()->route('admin.posts.index');
     }
 }
