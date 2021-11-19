@@ -11,6 +11,8 @@ class AddForeignCategoryIdOnPostsTable extends Migration
      *
      * @return void
      */
+
+    // CREAZIONE DI UNA FOREIGN KEY
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
