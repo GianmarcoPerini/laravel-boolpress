@@ -2,6 +2,12 @@
 
 @section('content')
     <form action="{{ route('admin.posts.store') }}" method="POST">
+        <div>
+            @foreach ($tags as $tag)
+                <input type="checkbox" name="tags[]" id="{{ $tag->name }}" value="{{ $tag->id }}">
+                <label for="{{ $tag->name }}">{{ $tag->name }}</label>
+            @endforeach
+        </div>
         @csrf
         <input type="text" name="title" placeholder="title">
         <input type="text" name="author" placeholder="author">

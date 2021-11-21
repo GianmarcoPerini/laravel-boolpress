@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Posts extends Model
+class Post extends Model
 {
     protected $fillable = ['author','author_img','description','post_img','title'];
 
     public function category()
     {
-        return $this->belongsTo('App\Model\Category');
+        return $this->belongsTo('App\Models\Category');
     }
 
-    public function tag()
+    public function tags()
     {
-        return $this->belongsToMany('App\Model\Tag');
+        return $this->belongsToMany('App\Models\Tag');
     }
 
     

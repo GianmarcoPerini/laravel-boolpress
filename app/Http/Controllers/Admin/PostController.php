@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Posts;
+use App\Models\Post;
+// use App\Models\Category;
+use App\Models\Tag;
+// use CategoryTablesSeeder;
+
+// use App\Models\UserInfo;
 
 class PostController extends Controller
 {
@@ -15,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Posts::all();
+        $posts = Post::all();
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -26,7 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('tags'));
     }
 
     /**
@@ -35,11 +41,17 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Posts $post)
+    public function store(Request $request)
     {
-        $newPost = new Posts();
-        $newPost->fill($request->all());
+        // dd($request);
+        $data = $request->all();
+        $newPost = new Post();
+        $newPost->fill($data);
         $newPost->save();
+
+        // controllo se nella request esiste una chiave con nome tags
+
+        if(array_key_exists('tags', $data)) $newPost->tags()->sync($data['tags']);
         return redirect()->route('admin.posts.show', $newPost);
     }
 
@@ -49,7 +61,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Posts $post)
+    public function show(Post $post)
     {
         return view('admin.posts.show', compact('post'));
     }
@@ -60,7 +72,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Posts $post)
+    public function edit(Post $post)
     {
         return view('admin.posts.edit', compact('post'));
     }
@@ -72,7 +84,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Posts $post)
+    public function update(Request $request, Post $post)
     {
         $post->update($request->all());
         return redirect()->route('admin.posts.index');
@@ -84,7 +96,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Posts $post)
+    public function destroy(Post $post)
     {
         $post->delete();
 

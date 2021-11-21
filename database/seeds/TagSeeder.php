@@ -15,7 +15,7 @@ class TagSeeder extends Seeder
     {
         for($i=0;$i<5;$i++){
             $newTag = new Tag();
-            $newTag->name = $faker->name();
+            $newTag->name = $faker->word();
             $newTag->save();
         }
     }
