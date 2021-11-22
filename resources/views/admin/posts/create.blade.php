@@ -7,6 +7,13 @@
                 <input type="checkbox" name="tags[]" id="{{ $tag->name }}" value="{{ $tag->id }}">
                 <label for="{{ $tag->name }}">{{ $tag->name }}</label>
             @endforeach
+
+        <select name="category_id" id="category">
+            <option value="">Nessuna categoria</option>
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
         </div>
         @csrf
         <input type="text" name="title" placeholder="title">

@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
-// use App\Models\Category;
+use App\Models\Category;
 use App\Models\Tag;
-// use CategoryTablesSeeder;
+
+use function GuzzleHttp\Promise\all;
 
 // use App\Models\UserInfo;
 
@@ -31,8 +32,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.create', compact('tags'));
+        return view('admin.posts.create', compact('tags', 'categories'));
     }
 
     /**
@@ -43,7 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->all());
         $data = $request->all();
         $newPost = new Post();
         $newPost->fill($data);
