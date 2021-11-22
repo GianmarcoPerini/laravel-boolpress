@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
-use function GuzzleHttp\Promise\all;
 
 // use App\Models\UserInfo;
 
