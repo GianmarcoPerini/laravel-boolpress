@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
-
 use function GuzzleHttp\Promise\all;
 
 // use App\Models\UserInfo;
@@ -76,7 +75,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post','categories','tags'));
     }
 
     /**
@@ -89,6 +90,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $post->update($request->all());
+        if(array_key_exists('tags', $request->all())) $post->tags()->sync($request['tags']);
         return redirect()->route('admin.posts.index');
     }
 

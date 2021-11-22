@@ -2,6 +2,7 @@
 
 @section('content')
     <form action="{{ route('admin.posts.store') }}" method="POST">
+        @csrf
         <div>
             @foreach ($tags as $tag)
                 <input type="checkbox" name="tags[]" id="{{ $tag->name }}" value="{{ $tag->id }}">
@@ -15,7 +16,7 @@
             @endforeach
         </select>
         </div>
-        @csrf
+        
         <input type="text" name="title" placeholder="title">
         <input type="text" name="author" placeholder="author">
         <input type="text" name="author_img" placeholder="author_img">

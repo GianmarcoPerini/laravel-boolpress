@@ -12,6 +12,7 @@
                 <th scope="col">Post Author</th>
                 <th scope="col">Post Title</th>
                 <th scope="col">Description</th>
+                <th scope="col">Category</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,15 @@
                 <td><a href="{{ route('admin.posts.show', $post) }}">{{ $post->author }}</a></td>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->description }}</td>
+                <td>
+                    @if ($post->category)
+                    {{$post->category->name}}
+                    @else
+                    ---
+                @endif
+                </td>
+
+                
                 <td><a href="{{ route('admin.posts.edit', $post) }}"><button class="btn btn-primary">Modifica</button></a></td>
                 
                 <form action="{{ route('admin.posts.destroy', $post) }}" method="post">

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
-use App\Models\Posts;
+use App\Models\Post;
 
 class PostsTableSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class PostsTableSeeder extends Seeder
     {
         for($i = 0; $i < 40; $i++){
 
-            $newPost = new Posts();
+            $newPost = new Post();
 
             $newPost->author = $faker->name();
             $newPost->author_img = $faker->imageUrl(200,200);
