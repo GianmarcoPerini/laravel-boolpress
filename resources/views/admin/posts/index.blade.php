@@ -4,7 +4,9 @@
 
 {{-- @dd($posts) --}}
 <div class="container">
-    <a href="{{ route('admin.posts.create') }}">Crea un nuovo post</a>
+    @auth
+        <a href="{{ route('admin.posts.create') }}">Crea un nuovo post</a>
+    @endauth
     <table class="table table-dark">
         <thead>
             <tr>
@@ -31,13 +33,16 @@
                 </td>
 
                 
-                <td><a href="{{ route('admin.posts.edit', $post) }}"><button class="btn btn-primary">Modifica</button></a></td>
+                @auth
+                    <td><a href="{{ route('admin.posts.edit', $post) }}"><button class="btn btn-primary">Modifica</button></a></td>
+
+                    <form action="{{ route('admin.posts.destroy', $post) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <td><button class="btn btn-danger">Elimina</button></td>
+                    </form>
+                @endauth
                 
-                <form action="{{ route('admin.posts.destroy', $post) }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <td><button class="btn btn-danger">Elimina</button></td>
-                </form>
                 
             </tr>
             @endforeach

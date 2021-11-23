@@ -26,7 +26,19 @@ Route::middleware('auth')
 ->prefix('admin')
 ->name('admin.')
 ->group(function(){
-    Route::resource('posts', 'PostController');
+    Route::resource('posts', 'PostController')->only(['create','store','edit','update','destroy']);
     Route::resource('users', 'UserController');
     Route::get('/', 'HomeController@index')->name('home');
 });
+
+Route::namespace('Admin')
+->prefix('admin')
+->name('admin.')
+->group(function(){
+    Route::resource('posts', 'PostController')->except(['create','store','edit','update','destroy']);
+});
+
+
+
+
+
