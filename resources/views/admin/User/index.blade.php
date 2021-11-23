@@ -6,10 +6,10 @@
     <table class="table table-dark">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">User Name</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Role</th>
+                <th class="col-1">#</th>
+                <th class="col-4">User Name</th>
+                <th class="col-4">E-mail</th>
+                <th class="col-2">Role</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
                 <td>{{ $user->email }}</td>               
                 <td>
                 @foreach($user->role as $role)
-                {{ $role->name }}
+                <div class="px-3 py-1 rounded-pill" style="background :{{ $role->color }}">{{ $role->name }}</div>
                 @endforeach
                 </td>               
             </tr>

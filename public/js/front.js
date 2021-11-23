@@ -1965,25 +1965,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CardList',
   data: function data() {
     return {
-      BigData: []
+      BigData: [],
+      currentPage: null,
+      lastPage: null
     };
   },
   methods: {
-    list: function list() {
+    list: function list(page) {
       var _this = this;
 
-      axios.get('http://127.0.0.1:8000/api/posts').then(function (res) {
-        _this.BigData = res.data.posts;
-        console.log(_this.BigData);
+      axios.get("http://127.0.0.1:8000/api/posts/?page=".concat(page)).then(function (res) {
+        _this.BigData = res.data.posts.data;
+        _this.currentPage = res.data.posts.current_page;
+        _this.lastPage = res.data.posts.last_page;
+        console.log(_this.currentPage);
       });
     }
   },
   mounted: function mounted() {
-    this.list();
+    this.list(this.currentPage);
+    console.log(this.currentPage);
   }
 });
 
@@ -2516,6 +2526,57 @@ var render = function () {
             ]),
           ])
         }),
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "d-flex justify-content-center" },
+      [
+        _vm.currentPage > 1
+          ? _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.list(_vm.currentPage - 1)
+                  },
+                },
+              },
+              [_vm._v("Prev")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._l(_vm.lastPage, function (n) {
+          return _c(
+            "button",
+            {
+              key: n,
+              class: n == _vm.currentPage ? "bg-primary" : "",
+              on: {
+                click: function ($event) {
+                  return _vm.list(n)
+                },
+              },
+            },
+            [_vm._v(_vm._s(n))]
+          )
+        }),
+        _vm._v(" "),
+        _vm.currentPage < _vm.lastPage
+          ? _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    return _vm.list(_vm.currentPage + 1)
+                  },
+                },
+              },
+              [_vm._v("Next")]
+            )
+          : _vm._e(),
       ],
       2
     ),

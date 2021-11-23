@@ -17,9 +17,14 @@
                 <td>{{ data.title }}</td>
                 <td>{{ data.description }}</td>
             </tr>
-
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        <button v-if="currentPage > 1" @click="list( currentPage -1 )">Prev</button>
+        <button v-for="n in lastPage" :key="n" @click="list( n )"
+        :class="n == currentPage ? 'bg-primary' : ''">{{n}}</button>
+        <button v-if="currentPage < lastPage" @click="list( currentPage +1 )">Next</button>
+    </div>
     </div>
 </template>
 
@@ -29,21 +34,26 @@ export default {
     data(){
         return {
             BigData: [],
+            currentPage: null,
+            lastPage: null,
         }
     },
 
     methods:{
-        list(){
-            axios.get('http://127.0.0.1:8000/api/posts')
+        list(page){
+            axios.get(`http://127.0.0.1:8000/api/posts/?page=${page}`)
             .then((res)=>{
-                this.BigData = res.data.posts
-                console.log(this.BigData);
+                this.BigData = res.data.posts.data
+                this.currentPage = res.data.posts.current_page
+                this.lastPage = res.data.posts.last_page
+                console.log(this.currentPage);
             })
         },
     },
 
     mounted(){
-        this.list()
+        this.list(this.currentPage)
+        console.log(this.currentPage);
     }
 
 }
