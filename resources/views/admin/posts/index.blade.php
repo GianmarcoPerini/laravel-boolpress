@@ -7,6 +7,24 @@
     @auth
         <a href="{{ route('admin.posts.create') }}">Crea un nuovo post</a>
     @endauth
+    <form action="{{ route('admin.posts.index') }}" method="GET">
+        {{-- @csrf --}}
+        <input type="search" name="search" placeholder="ricerca">
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipo" value="author" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                author
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipo" value="title" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                title
+            </label>
+        </div>
+
+    </form>
     <table class="table table-dark">
         <thead>
             <tr>
@@ -49,8 +67,8 @@
 
         </tbody>
     </table>
-    <div class="d-flex justify-content-center">
+    {{-- <div class="d-flex justify-content-center">
         {{ $posts->links() }}
-    </div>
+    </div> --}}
 </div>
 @endsection

@@ -18,9 +18,16 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(5);
+        // dd($request->all());
+        if(count($request->all()) == 0){
+            $posts = Post::paginate(7);
+        }else{
+            $posts = Post::where($request->tipo, 'like', '%' . $request->search . '%' )->get();
+            // dd($request->search);
+        }
+        
         return view('admin.posts.index', compact('posts'));
     }
 
