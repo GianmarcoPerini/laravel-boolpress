@@ -67,6 +67,7 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item"><a class="nav-link" href="{{ route('mail.create') }}">Contatti</a></li>
                     </ul>
                 </div>
             </div>

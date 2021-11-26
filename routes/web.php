@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('guest.home');
 });
 
-Auth::routes();
+Auth::routes(['verify'=> true]);
 
 
 
@@ -38,7 +38,7 @@ Route::namespace('Admin')
     Route::resource('posts', 'PostController')->except(['create','store','edit','update','destroy']);
 });
 
-
+Route::resource('mail', 'MailController')->except(['edit','update']);
 
 
 

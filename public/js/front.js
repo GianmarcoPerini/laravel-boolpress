@@ -1983,7 +1983,7 @@ __webpack_require__.r(__webpack_exports__);
     list: function list(page) {
       var _this = this;
 
-      axios.get("http://127.0.0.1:8000/api/posts/?page=".concat(page)).then(function (res) {
+      axios.get("/api/posts/?page=".concat(page)).then(function (res) {
         _this.BigData = res.data.posts.data;
         _this.currentPage = res.data.posts.current_page;
         _this.lastPage = res.data.posts.last_page;

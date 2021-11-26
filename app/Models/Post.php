@@ -14,10 +14,15 @@ class Post extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
+    public function getImagePrefix( $img ){
+        if ( str_contains( $img, 'posts/images' )){
+            return asset('storage') . '/';
+        }
+        return '';
+    }
+
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag');
     }
-
-    
 }

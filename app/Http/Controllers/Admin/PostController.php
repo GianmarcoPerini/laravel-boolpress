@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 // use App\Models\UserInfo;
 
@@ -45,6 +46,9 @@ class PostController extends Controller
     {
         // dd($request->all());
         $data = $request->all();
+        // dd($data);
+        $data['post_img'] = Storage::put('posts/images', $data['post_cover']);
+
         $newPost = new Post();
         $newPost->fill($data);
         $newPost->save();
@@ -63,6 +67,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+
         return view('admin.posts.show', compact('post'));
     }
 
@@ -76,6 +81,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
+
         return view('admin.posts.edit', compact('post','categories','tags'));
     }
 

@@ -41,7 +41,7 @@ export default {
 
     methods:{
         list(page){
-            axios.get(`http://127.0.0.1:8000/api/posts/?page=${page}`)
+            axios.get(`/api/posts/?page=${page}`)
             .then((res)=>{
                 this.BigData = res.data.posts.data
                 this.currentPage = res.data.posts.current_page
